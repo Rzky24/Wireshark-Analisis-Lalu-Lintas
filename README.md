@@ -1,5 +1,6 @@
-<img width="853" height="334" alt="image" src="https://github.com/user-attachments/assets/7ddd57e8-331b-4ae0-852c-5ab8d595e9c9" /># Wireshark-Analisis-Lalu-Lintas
+# Wireshark: Analisis Lalu Lintas
 
+<img width="853" height="334" alt="image" src="https://github.com/user-attachments/assets/7ddd57e8-331b-4ae0-852c-5ab8d595e9c9" />
 # Pemindaian Nmap
 Pemindaian Nmap
 Nmap adalah alat standar industri untuk memetakan jaringan, mengidentifikasi host aktif, dan menemukan layanan. Karena merupakan salah satu alat pemindai jaringan yang paling banyak digunakan, seorang analis keamanan harus mengidentifikasi pola jaringan yang dibuat dengannya. Bagian ini akan membahas identifikasi jenis pemindaian Nmap yang paling umum .
@@ -256,29 +257,38 @@ Catatan: Dalam analisis lalu lintas, selalu ada solusi alternatif yang tersedia.
 
 Mendeteksi aktivitas mencurigakan dalam file yang dipecah menjadi beberapa bagian itu mudah dan merupakan cara yang bagus untuk belajar bagaimana fokus pada detail. Sekarang gunakan "~ /Desktop/exercise-pcaps/arp/Exercise"file tersebut untuk mempraktikkan keterampilan Anda terhadap satu file tangkapan tunggal dan jawab pertanyaan di bawah ini!
 
-Jawablah pertanyaan-pertanyaan di bawah ini.
+Jawablah pertanyaan-pertanyaan di bawah ini. 
+pastikan dulu  berada di file : "~ /Desktop/exercise-pcaps/arp/Exercise" ( wireshark )
 
 Berapakah jumlah permintaan ARP yang dibuat oleh penyerang?
-
-284
+ketik di pencarian : eth.src == 00:0c:29:e2:18:b4 and arp.opcode == 1
+jawabaan lihat display bawah  : 284
 
 Berapakah jumlah paket HTTP yang diterima oleh penyerang?
-
-90
+ketik di pencarian : eth.dst == 00:0c:29:e2:18:b4 and http
+jawaban : 90
 
 Berapakah jumlah entri nama pengguna dan kata sandi yang diendus?
-
-6
+KETIK DIN PENCARIAN : http.host == testphp.vulnweb.com and http.request.method == "POST"
+JAWABAN : 6
 
 
 Apa kata sandi untuk "Client986"?
+masih dengan query pencarian yang sama : http.host == testphp.vulnweb.com and http.request.method == "POST" 
+1668	354.682038726	192.168.1.12	44.228.249.3	HTTP	728	POST /userinfo.php HTTP/1.1  (application/x-www-form-urlencoded)
+daN LIHAT DI detail http
+Form item: "pass" = "clientnothere!"
 
-clientnothere!
+jawaban clientnothere!
 
 
 Apa komentar yang diberikan oleh "Client354"?
+masih dengan query pencarian yang sama : http.host == testphp.vulnweb.com and http.request.method == "POST" 
+2320	618.814163954	192.168.1.12	44.228.249.3	HTTP	787	POST /comment.php HTTP/1.1  (application/x-www-form-urlencoded)
+HTML Form URL Encoded: application/x-www-form-urlencoded    dan lihat
+Form item: "comment" = "Nice work!"
 
-Nice work!
+jawaban : Nice work!
 
 # Mengidentifikasi Host: DHCP, NetBIOS, dan Kerberos
 Mengidentifikasi Inang
